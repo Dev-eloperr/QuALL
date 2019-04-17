@@ -123,6 +123,11 @@ public class Login extends javax.swing.JFrame {
                 loginBtnMouseExited(evt);
             }
         });
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -194,6 +199,10 @@ public class Login extends javax.swing.JFrame {
 
     private void signBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signBtnActionPerformed
         // TODO add your handling code here:
+        SignUp sin = new SignUp();
+        sin.setVisible(true);
+        
+        
     }//GEN-LAST:event_signBtnActionPerformed
 
     private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
@@ -215,6 +224,10 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         signBtn.setForeground(Color.white);
     }//GEN-LAST:event_signBtnMouseExited
+
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginBtnActionPerformed
 
     /**
      * @param args the command line arguments
