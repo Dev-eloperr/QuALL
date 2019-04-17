@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package project1;
-
 /**
  *
  * @author Dev Kathuria
@@ -16,6 +15,8 @@ public class Project1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Login obj = new Login();
+        obj.setVisible(true);
     }
     
 }
