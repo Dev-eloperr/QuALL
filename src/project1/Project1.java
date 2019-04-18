@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 package project1;
+
 /**
  *
- * @author Dev Kathuria
+ * @author Dev Kathuria, Meghna Chaudhary, Vedika Bansal
  */
 public class Project1 {
 
