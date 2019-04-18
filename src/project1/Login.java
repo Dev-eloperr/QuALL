@@ -7,6 +7,11 @@ package project1;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,6 +48,11 @@ public class Login extends javax.swing.JFrame {
         tfPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -224,10 +234,44 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         signBtn.setForeground(Color.white);
     }//GEN-LAST:event_signBtnMouseExited
-
+String uname;
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
+try{
+    String pd=new String (tfPass.getPassword());
+    uname=tfId.getText();
+    String q="Select * from login where uname='"+ uname+"' and pwd='"+pd+"';";
+    ResultSet rs=stmt.executeQuery(q);
+    if(rs.next())
+    {
+        JOptionPane.showMessageDialog(this, "LOGIN SUCCESSFUL");
+        new MainFrame().setVisible(true);
+        //startpage.setSize(800, 600);
+    }
+    else
+        JOptionPane.showMessageDialog(this, "LOGIN NOT SUCCESSFUL");
+}
+catch(Exception e)
+{
+    JOptionPane.showMessageDialog(this, e.getMessage()); 
+}        // TODO add your handling code here:
     }//GEN-LAST:event_loginBtnActionPerformed
+
+Connection con;
+Statement stmt;
+//String path="C:\\Users\\SANYA\\Desktop\\media\\";
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+try{
+  Class.forName("com.mysql.cj.jdbc.Driver");
+  con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
+  stmt=con.createStatement();
+  
+
+}
+catch(Exception e)
+{
+    JOptionPane.showMessageDialog(null, e.getMessage());
+}        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
