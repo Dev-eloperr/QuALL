@@ -244,13 +244,22 @@ public class Login extends javax.swing.JFrame {
             String hashed = hasher.hashpw(pd, hasher.gensalt());
             System.out.println(""+hashed);
             uname=tfId.getText();
-            System.out.println(BCrypt.checkpw(pd, hashed));
-            String q="Select * from login where uname='"+ uname+"' and pwd='"+hashed+"';";
+            
+            String q="Select * from login where uname='"+ uname+"';";
             ResultSet rs=stmt.executeQuery(q);
             if(rs.next())
             {
-                new MainFrame().setVisible(true);
-                setVisible(false);
+                //q="Select * from login where uname='"+ uname+"';";
+                //rs=stmt.executeQuery(q);
+                String pass = rs.getString("pwd");
+                boolean checked = BCrypt.checkpw(pd, pass);
+                if(checked){
+                    new MainFrame().setVisible(true);
+                    setVisible(false);
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Incorrect Username or password!");
+                
             }
             else
                 JOptionPane.showMessageDialog(this, "Incorrect Username or password!");
