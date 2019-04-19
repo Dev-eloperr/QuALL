@@ -233,6 +233,7 @@ String uname;
                         
                         uname = tfID.getText();
                         String q2 = "Insert into details (uname, pp, name, email) values('" + uname+ "', '', '" + tfName + "', '" + tfEmail + "');";
+                        stmt.execute(q2);
                         
                         JOptionPane.showMessageDialog(null,"CONGRATULATIONS !!! YOU HAVE SUCCESSFULLY MADE AN ACCOUNT!!!") ;  
                         new Login().setVisible(true);
