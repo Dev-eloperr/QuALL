@@ -1,14 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- * Author:  Dev Kathuria
- * Created: 20 Apr, 2019
- */
-create database xoxo;
-show databases;
-use project;
-show tables;
-select * from login;
+create table login(uname varchar(30) primary key, pwd varchar(100)); 
+
+insert into login values('dev','$2a$10$qyjKefhGuVdggeC0GgoAM.QSryoF7bIkvfu.vPG4GAhrrFu0jpmfK');
+
+create table details( uname varchar(30), pp varchar(60), name varchar(50), email varchar(50), 
+points int default 0, level int default 0, foreign key (uname) references login(uname) on delete cascade);
+

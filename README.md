@@ -1,3 +1,3 @@
 # QuALL
-
-Game for all
+Trivia Game 
+@author: @vedikaBansal @MeghnaChaudhary @DevKathuria
