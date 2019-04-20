@@ -98,12 +98,14 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        tfID.setText("@vb");
         tfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIDActionPerformed(evt);
             }
         });
 
+        tfName.setText("vedii");
         tfName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNameActionPerformed(evt);
@@ -114,6 +116,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Email      :");
 
+        tfEmail.setText("bv");
         tfEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfEmailActionPerformed(evt);
@@ -123,6 +126,15 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 2, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Password :");
+
+        tfp2.setText("maaaa");
+
+        tfp1.setText("maaaa");
+        tfp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfp1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -249,6 +261,10 @@ String uname;
                     tfp1.setText(""); 
                 }             // TODO add your handling code here:
     }//GEN-LAST:event_signupBtnActionPerformed
+
+    private void tfp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfp1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfp1ActionPerformed
 
     /**
      * @param args the command line arguments

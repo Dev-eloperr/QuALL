@@ -5,12 +5,6 @@
  */
 package project1;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Dev Kathuria
@@ -20,11 +14,11 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    
-    public MainFrame() {    
-        initComponents();   
+    public MainFrame(String uname) {
+        initComponents();
+        nameLabel.setText(uname);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,14 +28,122 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainTabbedPane = new javax.swing.JTabbedPane();
+        leaderboardLabel = new javax.swing.JPanel();
+        profLabel = new javax.swing.JPanel();
+        pictureLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        quesLabel = new javax.swing.JLabel();
+        levelLabel = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 800));
         setPreferredSize(new java.awt.Dimension(800, 800));
 
+        mainTabbedPane.setBackground(new java.awt.Color(0, 0, 0));
+
+        leaderboardLabel.setBackground(new java.awt.Color(0, 204, 204));
+        leaderboardLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        leaderboardLabel.setForeground(new java.awt.Color(0, 204, 204));
+
+        javax.swing.GroupLayout leaderboardLabelLayout = new javax.swing.GroupLayout(leaderboardLabel);
+        leaderboardLabel.setLayout(leaderboardLabelLayout);
+        leaderboardLabelLayout.setHorizontalGroup(
+            leaderboardLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1047, Short.MAX_VALUE)
+        );
+        leaderboardLabelLayout.setVerticalGroup(
+            leaderboardLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 701, Short.MAX_VALUE)
+        );
+
+        mainTabbedPane.addTab("Leaderboard", leaderboardLabel);
+
+        profLabel.setBackground(new java.awt.Color(0, 204, 204));
+        profLabel.setForeground(new java.awt.Color(0, 204, 204));
+
+        pictureLabel.setBackground(new java.awt.Color(0, 204, 204));
+        pictureLabel.setForeground(new java.awt.Color(0, 204, 204));
+        pictureLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/me/myimageapp/newpackage/uuserr.png"))); // NOI18N
+        pictureLabel.setToolTipText("");
+
+        nameLabel.setText("...");
+
+        userLabel.setText("...");
+
+        jProgressBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jProgressBar1.setForeground(new java.awt.Color(0, 204, 0));
+        jProgressBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, new java.awt.Color(0, 102, 102), null, null));
+
+        quesLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        quesLabel.setText("noOfQuestions");
+
+        levelLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        levelLabel.setText("LevelNo");
+
+        javax.swing.GroupLayout profLabelLayout = new javax.swing.GroupLayout(profLabel);
+        profLabel.setLayout(profLabelLayout);
+        profLabelLayout.setHorizontalGroup(
+            profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profLabelLayout.createSequentialGroup()
+                .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(profLabelLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(profLabelLayout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(profLabelLayout.createSequentialGroup()
+                                .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(173, 173, 173)
+                                .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 241, Short.MAX_VALUE))
+        );
+        profLabelLayout.setVerticalGroup(
+            profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profLabelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profLabelLayout.createSequentialGroup()
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(375, 375, 375))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profLabelLayout.createSequentialGroup()
+                        .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(260, 260, 260))))
+        );
+
+        mainTabbedPane.addTab("Profile", profLabel);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1038, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -71,12 +173,22 @@ public class MainFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-           
             public void run() {
-                new MainFrame().setVisible(true);
+                new MainFrame("").setVisible(true);
+            }
+        });
         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JPanel leaderboardLabel;
+    private javax.swing.JLabel levelLabel;
+    private javax.swing.JTabbedPane mainTabbedPane;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel pictureLabel;
+    private javax.swing.JPanel profLabel;
+    private javax.swing.JLabel quesLabel;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }
