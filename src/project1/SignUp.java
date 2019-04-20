@@ -125,6 +125,11 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6.setText("Password :");
 
         tfp2.setText("maaaa");
+        tfp2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfp2ActionPerformed(evt);
+            }
+        });
 
         tfp1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,6 +266,10 @@ String uname;
     private void tfp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfp1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfp1ActionPerformed
+
+    private void tfp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfp2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfp2ActionPerformed
 
     /**
      * @param args the command line arguments
