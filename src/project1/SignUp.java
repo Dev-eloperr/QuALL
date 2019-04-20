@@ -98,12 +98,14 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        tfID.setText("@vb");
         tfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIDActionPerformed(evt);
             }
         });
 
+        tfName.setText("vedii");
         tfName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNameActionPerformed(evt);
@@ -114,6 +116,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Email      :");
 
+        tfEmail.setText("bv");
         tfEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfEmailActionPerformed(evt);
@@ -124,23 +127,12 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Password :");
 
-        jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 2, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Email      :");
+        tfp2.setText("maaaa");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        tfp1.setText("maaaa");
+        tfp1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 2, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Password :");
-
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                tfp1ActionPerformed(evt);
             }
         });
 
@@ -241,7 +233,7 @@ String uname;
                 if(p1.equals(p2)){
                     try{
                         Class.forName("com.mysql.cj.jdbc.Driver");
-                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
+                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Deepali@123");
                         Statement stmt=con.createStatement();
                         
                         BCrypt hasher = new BCrypt();
@@ -253,7 +245,6 @@ String uname;
                         
                         uname = tfID.getText();
                         String q2 = "Insert into details (uname, pp, name, email) values('" + uname+ "', '', '" + tfName + "', '" + tfEmail + "');";
-                        stmt.execute(q2);
                         
                         JOptionPane.showMessageDialog(null,"CONGRATULATIONS !!! YOU HAVE SUCCESSFULLY MADE AN ACCOUNT!!!") ;  
                         new Login().setVisible(true);
@@ -270,6 +261,10 @@ String uname;
                     tfp1.setText(""); 
                 }             // TODO add your handling code here:
     }//GEN-LAST:event_signupBtnActionPerformed
+
+    private void tfp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfp1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfp1ActionPerformed
 
     /**
      * @param args the command line arguments

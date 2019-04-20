@@ -67,19 +67,11 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-<<<<<<< HEAD
-                              <Component id="jTextField3" pref="287" max="32767" attributes="0"/>
-                              <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
-=======
                               <Component id="tfName" pref="287" max="32767" attributes="0"/>
                               <Component id="tfEmail" alignment="0" max="32767" attributes="0"/>
                               <Component id="tfID" alignment="0" max="32767" attributes="0"/>
                               <Component id="tfp2" max="32767" attributes="0"/>
                               <Component id="tfp1" alignment="0" max="32767" attributes="0"/>
->>>>>>> origin/master
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -103,39 +95,22 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="jTextField4" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-=======
                       <Component id="tfEmail" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfID" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
->>>>>>> origin/master
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="jTextField1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-=======
                       <Component id="tfp1" alignment="3" pref="32" max="32767" attributes="0"/>
->>>>>>> origin/master
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="jTextField5" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-=======
                       <Component id="tfp2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
->>>>>>> origin/master
                   </Group>
                   <EmptySpace pref="51" max="32767" attributes="0"/>
                   <Component id="signupBtn" min="-2" max="-2" attributes="0"/>
@@ -232,24 +207,22 @@
             </Property>
             <Property name="text" type="java.lang.String" value="SignUP"/>
           </Properties>
-<<<<<<< HEAD
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signupBtnActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
-=======
->>>>>>> origin/master
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signupBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="@vb"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfIDActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="vedii"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNameActionPerformed"/>
           </Events>
@@ -265,29 +238,10 @@
             <Property name="text" type="java.lang.String" value="Email      :"/>
           </Properties>
         </Component>
-<<<<<<< HEAD
-        <Component class="javax.swing.JTextField" name="jTextField4">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Yu Gothic UI" size="24" style="2"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Password :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField5">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
-          </Events>
-=======
         <Component class="javax.swing.JTextField" name="tfEmail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="bv"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfEmailActionPerformed"/>
           </Events>
@@ -304,9 +258,17 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="tfp2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="maaaa"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="tfp1">
->>>>>>> origin/master
+          <Properties>
+            <Property name="text" type="java.lang.String" value="maaaa"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfp1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
