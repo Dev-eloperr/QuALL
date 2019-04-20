@@ -98,14 +98,12 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
-        tfID.setText("@vb");
         tfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIDActionPerformed(evt);
             }
         });
 
-        tfName.setText("vedii");
         tfName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNameActionPerformed(evt);
@@ -116,7 +114,6 @@ public class SignUp extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Email      :");
 
-        tfEmail.setText("bv");
         tfEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfEmailActionPerformed(evt);
@@ -129,7 +126,6 @@ public class SignUp extends javax.swing.JFrame {
 
         tfp2.setText("maaaa");
 
-        tfp1.setText("maaaa");
         tfp1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfp1ActionPerformed(evt);
