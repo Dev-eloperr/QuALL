@@ -29,6 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainTabbedPane = new javax.swing.JTabbedPane();
+        leaderboardLabel = new javax.swing.JPanel();
         profLabel = new javax.swing.JPanel();
         pictureLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
@@ -44,7 +45,6 @@ public class MainFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 800));
 
         mainTabbedPane.setBackground(new java.awt.Color(0, 0, 0));
-<<<<<<< HEAD
 
         leaderboardLabel.setBackground(new java.awt.Color(0, 204, 204));
         leaderboardLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -62,8 +62,6 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         mainTabbedPane.addTab("Leaderboard", leaderboardLabel);
-=======
->>>>>>> origin/master
 
         profLabel.setBackground(new java.awt.Color(0, 204, 204));
         profLabel.setForeground(new java.awt.Color(0, 204, 204));
@@ -94,7 +92,6 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(profLabelLayout.createSequentialGroup()
                 .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(profLabelLayout.createSequentialGroup()
-<<<<<<< HEAD
                         .addGap(90, 90, 90)
                         .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,48 +105,23 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(173, 173, 173)
                                 .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 241, Short.MAX_VALUE))
-=======
-                        .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(227, Short.MAX_VALUE))
->>>>>>> origin/master
         );
         profLabelLayout.setVerticalGroup(
             profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profLabelLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-=======
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
->>>>>>> origin/master
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profLabelLayout.createSequentialGroup()
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(375, 375, 375))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profLabelLayout.createSequentialGroup()
-                        .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(260, 260, 260))))
-=======
                 .addGap(146, 146, 146)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88)
                 .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(296, 296, 296))
->>>>>>> origin/master
+                    .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         mainTabbedPane.addTab("Profile", profLabel);
@@ -234,6 +206,7 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JPanel leaderboardLabel;
     private javax.swing.JPanel leaderboardPanel;
     private javax.swing.JLabel levelLabel;
     private javax.swing.JTabbedPane mainTabbedPane;
