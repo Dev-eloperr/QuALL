@@ -247,6 +247,8 @@ public class Login extends javax.swing.JFrame {
             
             String q="Select * from login where uname='"+ uname+"';";
             ResultSet rs=stmt.executeQuery(q);
+            String[] name = new String[0];
+            name[0]=q;
             if(rs.next())
             {
                 //q="Select * from login where uname='"+ uname+"';";
@@ -254,7 +256,9 @@ public class Login extends javax.swing.JFrame {
                 String pass = rs.getString("pwd");
                 boolean checked = BCrypt.checkpw(pd, pass);
                 if(checked){
-                    new MainFrame().setVisible(true);
+                    MainFrame gameWindow=new MainFrame();
+                    gameWindow.main(name);
+                    gameWindow.setVisible(true);
                     setVisible(false);
                 }
                 else
@@ -270,13 +274,12 @@ public class Login extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_loginBtnActionPerformed
 
-Connection con;
-Statement stmt;
-//String path="C:\\Users\\SANYA\\Desktop\\media\\";
+    Connection con;
+    Statement stmt;
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
           stmt=con.createStatement();
 
 
