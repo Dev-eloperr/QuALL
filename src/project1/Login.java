@@ -259,7 +259,6 @@ public class Login extends javax.swing.JFrame {
                 if(checked){
                     System.out.println("opening mainFrame");
                     new MainFrame(uname).setVisible(true);
-                    
                     setVisible(false);
                 }
                 else

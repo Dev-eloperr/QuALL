@@ -20,9 +20,10 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    static String ns = new String();
     public MainFrame(String uname) {
         initComponents();
-        userLabel.setText(uname);
+        userLabel.setText("@"+uname);
         Connection con;
         Statement stmt;
         int level=0;                       
@@ -49,11 +50,10 @@ public class MainFrame extends javax.swing.JFrame {
         }
         
         jProgressBar1.setValue(10*level);
-        
-        
-        
+       ns=uname; 
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,6 +71,7 @@ public class MainFrame extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         quesLabel = new javax.swing.JLabel();
         levelLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         leaderboardPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -79,7 +80,6 @@ public class MainFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 800));
 
         mainTabbedPane.setBackground(new java.awt.Color(0, 0, 0));
-        mainTabbedPane.setPreferredSize(new java.awt.Dimension(1100, 800));
 
         profLabel.setBackground(new java.awt.Color(0, 204, 204));
         profLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -94,7 +94,8 @@ public class MainFrame extends javax.swing.JFrame {
         nameLabel.setForeground(new java.awt.Color(0, 51, 153));
         nameLabel.setText("...");
 
-        userLabel.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        userLabel.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
+        userLabel.setForeground(new java.awt.Color(153, 153, 153));
         userLabel.setText("...");
 
         jProgressBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -109,6 +110,16 @@ public class MainFrame extends javax.swing.JFrame {
         levelLabel.setForeground(new java.awt.Color(0, 51, 153));
         levelLabel.setText("LevelNo");
 
+        jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 3, 48)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 51, 102));
+        jButton1.setText("Start Game");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout profLabelLayout = new javax.swing.GroupLayout(profLabel);
         profLabel.setLayout(profLabelLayout);
         profLabelLayout.setHorizontalGroup(
@@ -116,7 +127,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(profLabelLayout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
                     .addGroup(profLabelLayout.createSequentialGroup()
                         .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -126,10 +138,9 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(profLabelLayout.createSequentialGroup()
-                                .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(12, 12, 12)))))
+                                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12))
+                            .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(397, Short.MAX_VALUE))
         );
         profLabelLayout.setVerticalGroup(
@@ -139,15 +150,17 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(57, 57, 57)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(445, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(367, Short.MAX_VALUE))
         );
 
         mainTabbedPane.addTab("Profile", profLabel);
@@ -193,6 +206,11 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new Game(ns).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -230,6 +248,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JPanel leaderboardPanel;
