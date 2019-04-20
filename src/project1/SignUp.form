@@ -212,17 +212,11 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfID">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="@vb"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfIDActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfName">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="vedii"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNameActionPerformed"/>
           </Events>
@@ -239,9 +233,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfEmail">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="bv"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfEmailActionPerformed"/>
           </Events>
@@ -263,9 +254,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="tfp1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="maaaa"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfp1ActionPerformed"/>
           </Events>
