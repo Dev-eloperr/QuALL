@@ -28,18 +28,159 @@ public class Game extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        Grp1 = new javax.swing.ButtonGroup();
+        lblRemaining = new javax.swing.JLabel();
+        lblQues = new javax.swing.JLabel();
+        rb4 = new javax.swing.JRadioButton();
+        rb2 = new javax.swing.JRadioButton();
+        rb1 = new javax.swing.JRadioButton();
+        rb3 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
+        lblLevel = new javax.swing.JLabel();
+        lblPts = new javax.swing.JLabel();
+        lblMax = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
+        jInternalFrame1.setVisible(true);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
+
+        lblRemaining.setBackground(new java.awt.Color(102, 204, 255));
+        lblRemaining.setFont(new java.awt.Font("Sitka Heading", 3, 18)); // NOI18N
+        lblRemaining.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRemaining.setText("Remaining Questions:");
+        lblRemaining.setToolTipText("");
+        lblRemaining.setOpaque(true);
+        getContentPane().add(lblRemaining);
+        lblRemaining.setBounds(830, 570, 260, 40);
+
+        lblQues.setBackground(new java.awt.Color(0, 0, 0));
+        lblQues.setFont(new java.awt.Font("Segoe Script", 1, 24)); // NOI18N
+        lblQues.setForeground(new java.awt.Color(102, 204, 255));
+        lblQues.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblQues.setText("Q. <This is the question>");
+        lblQues.setOpaque(true);
+        getContentPane().add(lblQues);
+        lblQues.setBounds(160, 170, 860, 140);
+
+        rb4.setBackground(new java.awt.Color(0, 0, 0));
+        Grp1.add(rb4);
+        rb4.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
+        rb4.setForeground(new java.awt.Color(102, 204, 255));
+        rb4.setText("<Option4>");
+        rb4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rb4);
+        rb4.setBounds(690, 430, 200, 40);
+
+        rb2.setBackground(new java.awt.Color(0, 0, 0));
+        Grp1.add(rb2);
+        rb2.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
+        rb2.setForeground(new java.awt.Color(102, 204, 255));
+        rb2.setText("<Option2>");
+        rb2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rb2);
+        rb2.setBounds(690, 340, 200, 40);
+
+        rb1.setBackground(new java.awt.Color(0, 0, 0));
+        Grp1.add(rb1);
+        rb1.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
+        rb1.setForeground(new java.awt.Color(102, 204, 255));
+        rb1.setText("<Option1>");
+        getContentPane().add(rb1);
+        rb1.setBounds(310, 340, 200, 40);
+
+        rb3.setBackground(new java.awt.Color(0, 0, 0));
+        Grp1.add(rb3);
+        rb3.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
+        rb3.setForeground(new java.awt.Color(102, 204, 255));
+        rb3.setText("<Option3>");
+        getContentPane().add(rb3);
+        rb3.setBounds(310, 430, 200, 40);
+
+        jButton1.setBackground(new java.awt.Color(102, 204, 255));
+        jButton1.setFont(new java.awt.Font("Sitka Heading", 3, 20)); // NOI18N
+        jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(550, 510, 120, 40);
+
+        lblLevel.setBackground(new java.awt.Color(0, 0, 0));
+        lblLevel.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
+        lblLevel.setForeground(new java.awt.Color(102, 204, 255));
+        lblLevel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLevel.setText("LEVEL I");
+        lblLevel.setOpaque(true);
+        getContentPane().add(lblLevel);
+        lblLevel.setBounds(470, 90, 150, 30);
+
+        lblPts.setBackground(new java.awt.Color(0, 0, 0));
+        lblPts.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
+        lblPts.setForeground(new java.awt.Color(102, 204, 255));
+        lblPts.setText("Points:");
+        lblPts.setOpaque(true);
+        getContentPane().add(lblPts);
+        lblPts.setBounds(840, 10, 150, 40);
+
+        lblMax.setBackground(new java.awt.Color(0, 0, 0));
+        lblMax.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
+        lblMax.setForeground(new java.awt.Color(102, 204, 255));
+        lblMax.setText("Max Points:");
+        lblMax.setOpaque(true);
+        getContentPane().add(lblMax);
+        lblMax.setBounds(840, 50, 150, 50);
+
+        jLabel4.setBackground(new java.awt.Color(102, 204, 255));
+        jLabel4.setFont(new java.awt.Font("Sitka Heading", 3, 48)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("QuAll");
+        jLabel4.setToolTipText("");
+        jLabel4.setOpaque(true);
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(450, 10, 190, 70);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/me/myimageapp/newpackage/backdrop#2.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1120, 670);
+        jLabel1.setBounds(0, 0, 1130, 660);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rb4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb4ActionPerformed
+
+    private void rb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -77,6 +218,19 @@ public class Game extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Grp1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblLevel;
+    private javax.swing.JLabel lblMax;
+    private javax.swing.JLabel lblPts;
+    private javax.swing.JLabel lblQues;
+    private javax.swing.JLabel lblRemaining;
+    private javax.swing.JRadioButton rb1;
+    private javax.swing.JRadioButton rb2;
+    private javax.swing.JRadioButton rb3;
+    private javax.swing.JRadioButton rb4;
     // End of variables declaration//GEN-END:variables
 }

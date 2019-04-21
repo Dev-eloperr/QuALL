@@ -54,6 +54,7 @@ public class SignUp extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(0, 204, 204));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Sitka Heading", 2, 72)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 255, 255));
@@ -123,8 +124,6 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 2, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Password :");
-
-        tfp2.setText("maaaa");
 
         tfp1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,7 +228,7 @@ String uname;
                 if(p1.equals(p2)){
                     try{
                         Class.forName("com.mysql.cj.jdbc.Driver");
-                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
+                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
                         Statement stmt=con.createStatement();
                         
                         BCrypt hasher = new BCrypt();
@@ -240,7 +239,7 @@ String uname;
                         stmt.executeUpdate(q);
                         
                         uname = tfID.getText();
-                        String q2 = "Insert into details (uname, pp, name, email) values('" + uname+ "', '', '" + tfName + "', '" + tfEmail + "');";
+                        String q2 = "Insert into details (uname, pp, name, email) values('" + uname+ "', '', '" + tfName.getText() + "', '" + tfEmail.getText() + "');";
                         stmt.execute(q2);
                         JOptionPane.showMessageDialog(null,"CONGRATULATIONS !!! YOU HAVE SUCCESSFULLY MADE AN ACCOUNT!!!") ;  
                         new Login().setVisible(true);

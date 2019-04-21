@@ -29,7 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
         int level=0;                       
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
           stmt=con.createStatement();
           String q="Select * from details where uname='"+ uname+"';";
           ResultSet rs=stmt.executeQuery(q);
@@ -141,7 +141,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12))
                             .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         profLabelLayout.setVerticalGroup(
             profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +160,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         mainTabbedPane.addTab("Profile", profLabel);
@@ -178,14 +178,14 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(leaderboardPanelLayout.createSequentialGroup()
                 .addGap(421, 421, 421)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(632, Short.MAX_VALUE))
+                .addContainerGap(323, Short.MAX_VALUE))
         );
         leaderboardPanelLayout.setVerticalGroup(
             leaderboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leaderboardPanelLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(703, Short.MAX_VALUE))
+                .addContainerGap(532, Short.MAX_VALUE))
         );
 
         mainTabbedPane.addTab("Leaderboard", leaderboardPanel);
@@ -194,13 +194,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -208,7 +206,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new Game(ns).setVisible(true);
+        Game g = new Game(ns);
+        g.setVisible(true);
+        g.setSize(1120, 664);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -241,7 +241,9 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame("").setVisible(true);
+                MainFrame mf = new MainFrame("");
+                mf.setVisible(true);
+                mf.setSize(890, 730);
             }
         });
         
