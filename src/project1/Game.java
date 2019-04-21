@@ -5,17 +5,26 @@
  */
 package project1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dev Kathuria
  */
 public class Game extends javax.swing.JFrame {
-
+    String uname;
     /**
      * Creates new form Game
      */
     public Game(String uname) {
-        
+        this.uname = uname;
         initComponents();
     }
 
@@ -36,7 +45,7 @@ public class Game extends javax.swing.JFrame {
         rb2 = new javax.swing.JRadioButton();
         rb1 = new javax.swing.JRadioButton();
         rb3 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
         lblLevel = new javax.swing.JLabel();
         lblPts = new javax.swing.JLabel();
         lblMax = new javax.swing.JLabel();
@@ -101,6 +110,7 @@ public class Game extends javax.swing.JFrame {
         Grp1.add(rb1);
         rb1.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
         rb1.setForeground(new java.awt.Color(102, 204, 255));
+        rb1.setSelected(true);
         rb1.setText("<Option1>");
         getContentPane().add(rb1);
         rb1.setBounds(310, 340, 200, 40);
@@ -113,16 +123,16 @@ public class Game extends javax.swing.JFrame {
         getContentPane().add(rb3);
         rb3.setBounds(310, 430, 200, 40);
 
-        jButton1.setBackground(new java.awt.Color(102, 204, 255));
-        jButton1.setFont(new java.awt.Font("Sitka Heading", 3, 20)); // NOI18N
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setBackground(new java.awt.Color(102, 204, 255));
+        btnSubmit.setFont(new java.awt.Font("Sitka Heading", 3, 20)); // NOI18N
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(550, 510, 120, 40);
+        getContentPane().add(btnSubmit);
+        btnSubmit.setBounds(550, 510, 120, 40);
 
         lblLevel.setBackground(new java.awt.Color(0, 0, 0));
         lblLevel.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
@@ -136,7 +146,7 @@ public class Game extends javax.swing.JFrame {
         lblPts.setBackground(new java.awt.Color(0, 0, 0));
         lblPts.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
         lblPts.setForeground(new java.awt.Color(102, 204, 255));
-        lblPts.setText("Points:");
+        lblPts.setText("Points: 0");
         lblPts.setOpaque(true);
         getContentPane().add(lblPts);
         lblPts.setBounds(840, 10, 150, 40);
@@ -174,12 +184,183 @@ public class Game extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rb2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try {
+            lblRemaining.setText("Remaining Question: " + rem);
+            
+            String ans;
+            if (rb1.isSelected()) {
+                ans = rb1.getText();
+            } else if (rb2.isSelected()) {
+                ans = rb2.getText();
+            } else if (rb3.isSelected()) {
+                ans = rb3.getText();
+            } else {
+                ans = rb4.getText();
+            }
+            String q = "Select * from questions where ind = " + ind + ";";
+            ResultSet rs = stmt.executeQuery(q);
+            String key = "";
+            String diff = "";
+            
+            if(rs.next()){
+                key = rs.getString("ansC");
+                diff = rs.getString("diff");
+            }
+            
+            if(key.equals(ans)){
+                if(diff.equals("easy")){
+                    pts += 5;
+                }else if(diff.equals("medium")){
+                    pts += 10;
+                }else if(diff.equals("hard")){
+                    pts += 15;
+                }
+            }
+            
+            lblPts.setText("Points: " + pts);
+            
+            if(e>0){
+              diff = "easy";
+            }else if(m>0){
+                diff = "medium";
+            }else{
+                diff = "hard";
+            }
+            
+            String q3 = "Select ind from useQ order by Qused";
+            rs = stmt.executeQuery(q3);
 
+            ArrayList<String> opt = new ArrayList<>();
+            String q4;
+            while(rs.next()){
+                ind = rs.getInt("ind");
+                q4 = "Select * from questions where ind = " + ind + "diff = '" + diff + "';";
+                ResultSet rs1 = stmt.executeQuery(q4);
+                if(rs1.next()){
+                    if(diff.equals("easy")){
+                        e--;
+                    }else if(diff.equals("medium")){
+                        m--;
+                    }else if(diff.equals("hard")){
+                        h--;
+                    }
+                  
+                  lblQues.setText(rs1.getString("ques"));
+                  opt.add(rs1.getString("ansC"));
+                  opt.add(rs1.getString("ans2"));
+                  opt.add(rs1.getString("ans3"));
+                  opt.add(rs1.getString("ans4"));
+                  
+                  Collections.shuffle(opt);
+                  rb1.setText(opt.get(0));
+                  rb2.setText(opt.get(1));
+                  rb3.setText(opt.get(2));
+                  rb4.setText(opt.get(3));
+                  
+                  String q5 = "Update useQ set Qused = Qused + 1;";
+                  stmt.executeUpdate(q5);
+                  
+                  break;
+              }
+          }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_btnSubmitActionPerformed
+    Connection con;
+    Statement stmt;
+    int lev;
+    int e=0, m=0, h=0;
+    
+    int pts = 0;
+    int ind;
+    
+    int rem = 9;
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+        try{
+          Class.forName("com.mysql.cj.jdbc.Driver");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
+          stmt=con.createStatement();
+          String q1 = "Select level from details where uname = '" + uname + "';";
+          ResultSet rs = stmt.executeQuery(q1);
+          lev = 1;
+          
+          //to get level
+          while(rs.next()){
+              lev = rs.getInt("level");
+          }
+          lblLevel.setText("LEVEL " + lev);
+          
+          
+          //to get number of easy, medium and hard questions in level
+          String q2 = "Select * from noq where level = " + lev + ";";
+          rs = stmt.executeQuery(q2);
+          
+          while(rs.next()){
+              e = rs.getInt("easy");
+              m = rs.getInt("med");
+              h = rs.getInt("hard");
+          }
+          
+          //calculating maximum points
+          int maxPts = e*5 + m*10 + h*15; 
+          lblMax.setText("Max Points: " + maxPts);
+          
+          String diff;
+          if(e>0){
+              diff = "easy";
+          }else if(m>0){
+              diff = "medium";
+          }else{
+              diff = "hard";
+          }
+          // to get a question
+          String q3 = "Select ind from useQ order by Qused";
+          rs = stmt.executeQuery(q3);
+
+          ArrayList<String> opt = new ArrayList<>();
+          String q4;
+          while(rs.next()){
+              ind = rs.getInt("ind");
+              q4 = "Select * from questions where ind = " + ind + "diff = '" + diff + "';";
+              ResultSet rs1 = stmt.executeQuery(q4);
+              if(rs1.next()){
+                if(diff.equals("easy")){
+                    e--;
+                }else if(diff.equals("medium")){
+                    m--;
+                }else if(diff.equals("hard")){
+                    h--;
+                }
+                rem--;  
+                
+                lblQues.setText(rs1.getString("ques"));
+                opt.add(rs1.getString("ansC"));
+                opt.add(rs1.getString("ans2"));
+                opt.add(rs1.getString("ans3"));
+                opt.add(rs1.getString("ans4"));
+                
+                Collections.shuffle(opt);
+                rb1.setText(opt.get(0));
+                rb2.setText(opt.get(1));
+                rb3.setText(opt.get(2));
+                rb4.setText(opt.get(3));
+                
+                String q5 = "Update useQ set Qused = Qused + 1;";
+                stmt.executeUpdate(q5);
+                  
+                break;
+              }
+          }
+
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -219,7 +400,7 @@ public class Game extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup Grp1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
