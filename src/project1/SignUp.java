@@ -234,7 +234,7 @@ String uname;
                 if(p1.equals(p2)){
                     try{
                         Class.forName("com.mysql.cj.jdbc.Driver");
-                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Deepali@123");
+                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
                         Statement stmt=con.createStatement();
                         
                         BCrypt hasher = new BCrypt();
@@ -246,7 +246,7 @@ String uname;
                         
                         uname = tfID.getText();
                         String q2 = "Insert into details (uname, pp, name, email) values('" + uname+ "', '', '" + tfName + "', '" + tfEmail + "');";
-                        
+                        stmt.execute(q2);
                         JOptionPane.showMessageDialog(null,"CONGRATULATIONS !!! YOU HAVE SUCCESSFULLY MADE AN ACCOUNT!!!") ;  
                         new Login().setVisible(true);
 
