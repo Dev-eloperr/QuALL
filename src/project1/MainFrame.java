@@ -29,7 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
         int level=0;                       
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Deepali@123");
           stmt=con.createStatement();
           String q="Select * from details where uname='"+ uname+"';";
           ResultSet rs=stmt.executeQuery(q);

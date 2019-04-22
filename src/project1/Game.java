@@ -229,14 +229,14 @@ public class Game extends javax.swing.JFrame {
                 diff = "hard";
             }
             
-            String q3 = "Select ind from useQ order by Qused";
+            String q3 = "Select ind from useQ order by Qused;";
             rs = stmt.executeQuery(q3);
 
             ArrayList<String> opt = new ArrayList<>();
             String q4;
             while(rs.next()){
                 ind = rs.getInt("ind");
-                q4 = "Select * from questions where ind = " + ind + "diff = '" + diff + "';";
+                q4 = "Select * from questions where ind = " + ind + " and diff = '" + diff + "';";
                 ResultSet rs1 = stmt.executeQuery(q4);
                 if(rs1.next()){
                     if(diff.equals("easy")){
@@ -282,7 +282,7 @@ public class Game extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Deepali@123");
           stmt=con.createStatement();
           String q1 = "Select level from details where uname = '" + uname + "';";
           ResultSet rs = stmt.executeQuery(q1);
@@ -318,14 +318,14 @@ public class Game extends javax.swing.JFrame {
               diff = "hard";
           }
           // to get a question
-          String q3 = "Select ind from useQ order by Qused";
+          String q3 = "Select ind from useQ order by Qused;";
           rs = stmt.executeQuery(q3);
 
           ArrayList<String> opt = new ArrayList<>();
           String q4;
           while(rs.next()){
               ind = rs.getInt("ind");
-              q4 = "Select * from questions where ind = " + ind + "diff = '" + diff + "';";
+              q4 = "Select * from questions where ind = " + ind + " and diff = '" + diff + "';";
               ResultSet rs1 = stmt.executeQuery(q4);
               if(rs1.next()){
                 if(diff.equals("easy")){
