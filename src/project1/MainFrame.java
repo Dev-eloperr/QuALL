@@ -45,7 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
         catch(Exception e)
         {
             e.printStackTrace();
-            System.out.println("Fucking hell");
+            System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
