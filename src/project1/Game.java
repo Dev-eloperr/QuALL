@@ -12,7 +12,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Timer;
 import javax.swing.JOptionPane;
+import java.util.TimerTask;
 
 /**
  *
@@ -50,6 +52,7 @@ public class Game extends javax.swing.JFrame {
         lblPts = new javax.swing.JLabel();
         lblMax = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        timer_Label = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
@@ -168,8 +171,17 @@ public class Game extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(450, 10, 190, 70);
 
+        timer_Label.setBackground(new java.awt.Color(0, 0, 0));
+        timer_Label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        timer_Label.setForeground(new java.awt.Color(0, 204, 204));
+        timer_Label.setOpaque(true);
+        getContentPane().add(timer_Label);
+        timer_Label.setBounds(170, 50, 30, 30);
+
+        jLabel1.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/me/myimageapp/newpackage/backdrop#2.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setOpaque(true);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1130, 660);
 
@@ -189,6 +201,7 @@ Statement stmt1;
         try {
             lblRemaining.setText("Remaining Questions: " + rem);
             
+            //timerF(0);
             String ans;
             if (rb1.isSelected()) {
                 ans = rb1.getText();
@@ -266,10 +279,9 @@ Statement stmt1;
                       rb3.setText(opt.get(2));
                       rb4.setText(opt.get(3));
 
-                      String q5 = "Update useQ set Qused = Qused + 1;";
+                      String q5 = "Update useQ set Qused = Qused + 1 where uname = '"+uname+"' and ind = "+ind+";";
                       stmt.executeUpdate(q5);
-                      //String qpts = "Update details set points = " + pts + ";";
-                      //stmt.executeQuery(qpts);
+                      
                       break;
                   }
               }
@@ -277,16 +289,16 @@ Statement stmt1;
             else{
                 q = "Select * from details where uname = '" + uname + "';";
                 rs = stmt.executeQuery(q);
-                int upts = 0;
+                int upts = pts;
                 if(rs.next()){
-                    upts = rs.getInt("points");
+                    //upts = rs.getInt("points");
                     System.out.println("Points"+upts);
                     if(upts>=50){
                         upts = upts - 50;
                         q = "Update details set points = " + upts + ", level = level + 1 where uname = '" + uname + "';";
                         stmt1.executeUpdate(q);
                         int l = rs.getInt("level");
-                        JOptionPane.showMessageDialog(null, "LEVEL UP!\n"+(l));
+                        JOptionPane.showMessageDialog(null, "LEVEL UPGRADED TO "+(l+1));
                         System.out.println("Lev"+l);
                     }
                 }
@@ -306,6 +318,18 @@ Statement stmt1;
     int ind;
     
     int rem = 9;
+    public void timerF(int s){
+          Timer timer = new Timer();
+          timer.scheduleAtFixedRate(new TimerTask() {
+                int sec=s;
+                @Override
+                public void run() {
+                    sec++;
+                    timer_Label.setText(sec+"");
+                    
+                }
+            }, 1000,1000);
+          }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try{
             lblRemaining.setText("Remaining Questions: " + rem);
@@ -313,7 +337,10 @@ Statement stmt1;
           Class.forName("com.mysql.cj.jdbc.Driver");
           con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Deepali@123");
           stmt=con.createStatement();
+           timerF(0);
+          
           String q1 = "Select level from details where uname = '" + uname + "';";
+          
           ResultSet rs = stmt.executeQuery(q1);
           lev = 1;
           
@@ -347,7 +374,7 @@ Statement stmt1;
               diff = "hard";
           }
           // to get a question
-          String q3 = "Select ind from useQ order by Qused;";
+          String q3 = "Select ind from useQ where uname = '"+ uname +"' order by Qused;";
           rs = stmt.executeQuery(q3);
 
           ArrayList<String> opt = new ArrayList<>();
@@ -379,7 +406,7 @@ Statement stmt1;
                 rb3.setText(opt.get(2));
                 rb4.setText(opt.get(3));
                 
-                String q5 = "Update useQ set Qused = Qused + 1 where ind = "+ ind +";";
+                String q5 = "Update useQ set Qused = Qused + 1 where ind = "+ ind +" and uname = '" +uname+"';";
                 stmt.executeUpdate(q5);
                   
                 break;
@@ -443,5 +470,6 @@ Statement stmt1;
     private javax.swing.JRadioButton rb2;
     private javax.swing.JRadioButton rb3;
     private javax.swing.JRadioButton rb4;
+    private javax.swing.JLabel timer_Label;
     // End of variables declaration//GEN-END:variables
 }
