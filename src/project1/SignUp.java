@@ -125,6 +125,12 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Password :");
 
+        tfp2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfp2KeyPressed(evt);
+            }
+        });
+
         tfp1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfp1ActionPerformed(evt);
@@ -260,6 +266,12 @@ String uname;
     private void tfp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfp1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfp1ActionPerformed
+
+    private void tfp2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfp2KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER)        
+            signupBtn.doClick();
+    }//GEN-LAST:event_tfp2KeyPressed
 
     /**
      * @param args the command line arguments

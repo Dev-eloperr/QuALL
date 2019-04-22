@@ -264,7 +264,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
-        jProgressBar1.setValue(5*level);
+        jProgressBar1.setValue(20*level);
     }//GEN-LAST:event_mainTabbedPaneMouseEntered
 
     /**

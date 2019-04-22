@@ -5,7 +5,7 @@ create table login(uname varchar(30) primary key, pwd varchar(100));
 select * from login;
 
 create table details( uname varchar(30), pp varchar(60), name varchar(50), email varchar(50), 
-points int default 0, level int default 0, foreign key (uname) references login(uname) on delete cascade);
+points int default 0, level int default 1, foreign key (uname) references login(uname) on delete cascade);
 
 create table questions (ind int primary key, ques varchar(200), ansC varchar(50), ans2 varchar(50), ans3 varchar(50), ans4 varchar(50), diff varchar(6));
 

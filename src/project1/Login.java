@@ -141,6 +141,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        tfPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPassKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -292,6 +298,12 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }        // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
+
+    private void tfPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPassKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER)        
+            loginBtn.doClick();
+    }//GEN-LAST:event_tfPassKeyPressed
 
     /**
      * @param args the command line arguments

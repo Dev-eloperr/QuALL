@@ -94,7 +94,7 @@ public class Game extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rb4);
-        rb4.setBounds(690, 430, 200, 40);
+        rb4.setBounds(690, 430, 200, 60);
 
         rb2.setBackground(new java.awt.Color(0, 0, 0));
         Grp1.add(rb2);
@@ -107,7 +107,7 @@ public class Game extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rb2);
-        rb2.setBounds(690, 340, 200, 40);
+        rb2.setBounds(690, 340, 200, 60);
 
         rb1.setBackground(new java.awt.Color(0, 0, 0));
         Grp1.add(rb1);
@@ -115,8 +115,13 @@ public class Game extends javax.swing.JFrame {
         rb1.setForeground(new java.awt.Color(102, 204, 255));
         rb1.setSelected(true);
         rb1.setText("<Option1>");
+        rb1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(rb1);
-        rb1.setBounds(310, 340, 200, 40);
+        rb1.setBounds(310, 340, 200, 60);
 
         rb3.setBackground(new java.awt.Color(0, 0, 0));
         Grp1.add(rb3);
@@ -124,7 +129,7 @@ public class Game extends javax.swing.JFrame {
         rb3.setForeground(new java.awt.Color(102, 204, 255));
         rb3.setText("<Option3>");
         getContentPane().add(rb3);
-        rb3.setBounds(310, 430, 200, 40);
+        rb3.setBounds(310, 430, 200, 60);
 
         btnSubmit.setBackground(new java.awt.Color(102, 204, 255));
         btnSubmit.setFont(new java.awt.Font("Sitka Heading", 3, 20)); // NOI18N
@@ -197,8 +202,14 @@ public class Game extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rb2ActionPerformed
 Statement stmt1,stmt3;
+ StringBuffer question_s;
+    StringBuffer ans_c;
+    StringBuffer ans2;
+    StringBuffer ans3;
+    StringBuffer ans4;
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        
         try {
             lblRemaining.setText("Remaining Questions: " + rem);
             
@@ -245,7 +256,7 @@ Statement stmt1,stmt3;
                 diff = "fin";
             }
             
-            System.out.println(diff+"is diff");
+            System.out.println(diff+" is diff");
             if(!diff.equals("fin")){
                 String q3 = "Select ind from useQ order by Qused;";
                 rs = stmt.executeQuery(q3);
@@ -268,11 +279,38 @@ Statement stmt1,stmt3;
                         }
                         rem--;
 
-                      lblQues.setText(rs1.getString("ques"));
-                      opt.add(rs1.getString("ansC"));
-                      opt.add(rs1.getString("ans2"));
-                      opt.add(rs1.getString("ans3"));
-                      opt.add(rs1.getString("ans4"));
+                      question_s = new StringBuffer(rs1.getString("ques"));
+                ans_c = new StringBuffer(rs1.getString("ansC"));
+                ans2 = new StringBuffer(rs1.getString("ans2"));
+                ans3 = new StringBuffer(rs1.getString("ans3"));
+                ans4 = new StringBuffer(rs1.getString("ans4"));
+                //question_s.insert(0,rs1.getString("ques"));
+                  System.out.println("after news");
+                  System.out.println(question_s);
+                if(question_s.length()>50){
+                    System.out.println("appended");
+                    question_s.insert(50, "<br>");
+                }
+                //ans_c.append(rs1.getString("ansC"));
+                if(ans_c.length()>15)
+                    ans_c.insert(15, "-<br>");
+                //ans2.append(rs1.getString("ans2"));
+                if(ans2.length()>15)
+                    ans2.insert(15, "<br>");
+                //ans3.append(rs1.getString("ans3"));
+                if(ans3.length()>15)
+                    ans3.insert(15, "<br>");
+                //ans4.append(rs1.getString("ans4"));
+                if(ans4.length()>15)
+                    ans4.insert(15, "<br>");
+                  System.out.println("length buster");
+                System.out.println("QUESTION: "+question_s+"\n"+ans_c+"\n"+ans2+"\n"+ans3+"\n"+ans4+"\n");
+                lblQues.setText("<html>"+question_s+"</html>");
+                
+                opt.add("<html>"+ans_c+"</html>");
+                opt.add("<html>"+ans2+"</html>");
+                opt.add("<html>"+ans3+"</html>");
+                opt.add("<html>"+ans4+"</html>");
 
                       Collections.shuffle(opt);
                       rb1.setText(opt.get(0));
@@ -327,6 +365,9 @@ Statement stmt1,stmt3;
     int ind;
     
     int rem = 9;
+    
+   
+    
     public void timerF(int s){
           Timer timer = new Timer();
           timer.scheduleAtFixedRate(new TimerTask() {
@@ -403,12 +444,39 @@ Statement stmt1,stmt3;
                     h--;
                 }
                 rem--;  
+                System.out.println("aagya");
+                question_s = new StringBuffer(rs1.getString("ques"));
+                ans_c = new StringBuffer(rs1.getString("ansC"));
+                ans2 = new StringBuffer(rs1.getString("ans2"));
+                ans3 = new StringBuffer(rs1.getString("ans3"));
+                ans4 = new StringBuffer(rs1.getString("ans4"));
+                //question_s.insert(0,rs1.getString("ques"));
+                  System.out.println("after news");
+                  System.out.println(question_s);
+                if(question_s.length()>50){
+                    System.out.println("appended");
+                    question_s.insert(50, "<br>");
+                }
+                //ans_c.append(rs1.getString("ansC"));
+                if(ans_c.length()>15)
+                    ans_c.insert(15, "-<br>");
+                //ans2.append(rs1.getString("ans2"));
+                if(ans2.length()>15)
+                    ans2.insert(15, "<br>");
+                //ans3.append(rs1.getString("ans3"));
+                if(ans3.length()>15)
+                    ans3.insert(15, "<br>");
+                //ans4.append(rs1.getString("ans4"));
+                if(ans4.length()>15)
+                    ans4.insert(15, "<br>");
+                  System.out.println("length buster");
+                System.out.println("QUESTION: "+question_s+"\n"+ans_c+"\n"+ans2+"\n"+ans3+"\n"+ans4+"\n");
+                lblQues.setText("<html>"+question_s+"</html>");
                 
-                lblQues.setText(rs1.getString("ques"));
-                opt.add(rs1.getString("ansC"));
-                opt.add(rs1.getString("ans2"));
-                opt.add(rs1.getString("ans3"));
-                opt.add(rs1.getString("ans4"));
+                opt.add("<html>"+ans_c+"</html>");
+                opt.add("<html>"+ans2+"</html>");
+                opt.add("<html>"+ans3+"</html>");
+                opt.add("<html>"+ans4+"</html>");
                 
                 Collections.shuffle(opt);
                 rb1.setText(opt.get(0));
@@ -418,7 +486,11 @@ Statement stmt1,stmt3;
                 
                 String q5 = "Update useQ set Qused = Qused + 1 where ind = "+ ind +" and uname = '" +uname+"';";
                 stmt.executeUpdate(q5);
-                  
+                question_s.setLength(0);
+                ans_c.setLength(0);
+                ans2.setLength(0);
+                ans3.setLength(0);
+                ans4.setLength(0);
                 break;
               }
           }
@@ -429,6 +501,10 @@ Statement stmt1,stmt3;
             JOptionPane.showMessageDialog(null, e.getMessage());
         }         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
+
+    private void rb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb1ActionPerformed
 
     /**
      * @param args the command line arguments
