@@ -20,16 +20,18 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    Connection con;
+    Statement stmt;
+    int level=0;
     static String ns = new String();
     public MainFrame(String uname) {
         initComponents();
+        
         userLabel.setText("@"+uname);
-        Connection con;
-        Statement stmt;
-        int level=0;                       
+        /*
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Deepali@123");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
           stmt=con.createStatement();
           String q="Select * from details where uname='"+ uname+"';";
           ResultSet rs=stmt.executeQuery(q);
@@ -49,7 +51,8 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
-        jProgressBar1.setValue(10*level);
+        jProgressBar1.setValue(5*level);
+        */
        ns=uname; 
     }
     
@@ -80,6 +83,21 @@ public class MainFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 800));
 
         mainTabbedPane.setBackground(new java.awt.Color(0, 0, 0));
+        mainTabbedPane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                mainTabbedPaneMouseMoved(evt);
+            }
+        });
+        mainTabbedPane.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mainTabbedPaneFocusGained(evt);
+            }
+        });
+        mainTabbedPane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mainTabbedPaneMouseEntered(evt);
+            }
+        });
 
         profLabel.setBackground(new java.awt.Color(0, 204, 204));
         profLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -210,6 +228,44 @@ public class MainFrame extends javax.swing.JFrame {
         g.setVisible(true);
         g.setSize(1120, 664);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void mainTabbedPaneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainTabbedPaneFocusGained
+        // TODO add your handling code here:
+        
+    
+    }//GEN-LAST:event_mainTabbedPaneFocusGained
+
+    private void mainTabbedPaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTabbedPaneMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainTabbedPaneMouseMoved
+
+    private void mainTabbedPaneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTabbedPaneMouseEntered
+        // TODO add your handling code here:
+        try{
+          Class.forName("com.mysql.cj.jdbc.Driver");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
+          stmt=con.createStatement();
+          String q="Select * from details where uname='"+ ns+"';";
+          ResultSet rs=stmt.executeQuery(q);
+          if(rs.next()){
+            nameLabel.setText(rs.getString("name"));
+            levelLabel.setText("You are on level: "+rs.getString("level"));
+            int p=50-rs.getInt("points")%50;
+            quesLabel.setText("Points required to level up: "+p);
+            level=Integer.parseInt(rs.getString("level"));
+          }
+          
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+        jProgressBar1.setValue(5*level);
+    }//GEN-LAST:event_mainTabbedPaneMouseEntered
 
     /**
      * @param args the command line arguments

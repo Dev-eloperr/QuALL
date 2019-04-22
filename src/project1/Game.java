@@ -172,11 +172,12 @@ public class Game extends javax.swing.JFrame {
         jLabel4.setBounds(450, 10, 190, 70);
 
         timer_Label.setBackground(new java.awt.Color(0, 0, 0));
-        timer_Label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        timer_Label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         timer_Label.setForeground(new java.awt.Color(0, 204, 204));
+        timer_Label.setText("00:00");
         timer_Label.setOpaque(true);
         getContentPane().add(timer_Label);
-        timer_Label.setBounds(170, 50, 30, 30);
+        timer_Label.setBounds(170, 50, 70, 30);
 
         jLabel1.setBackground(new java.awt.Color(0, 204, 204));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -195,7 +196,7 @@ public class Game extends javax.swing.JFrame {
     private void rb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rb2ActionPerformed
-Statement stmt1;
+Statement stmt1,stmt3;
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         try {
@@ -216,7 +217,7 @@ Statement stmt1;
             ResultSet rs = stmt.executeQuery(q);
             String key = "";
             String diff = "";
-            
+            String q2=new String();
             if(rs.next()){
                 key = rs.getString("ansC");
                 diff = rs.getString("diff");
@@ -244,13 +245,13 @@ Statement stmt1;
                 diff = "fin";
             }
             
-            
+            System.out.println(diff+"is diff");
             if(!diff.equals("fin")){
                 String q3 = "Select ind from useQ order by Qused;";
                 rs = stmt.executeQuery(q3);
 
                  stmt1=con.createStatement();
-
+                 stmt3=con.createStatement();
                 ArrayList<String> opt = new ArrayList<>();
                 String q4;
                 while(rs.next()){
@@ -290,12 +291,20 @@ Statement stmt1;
                 q = "Select * from details where uname = '" + uname + "';";
                 rs = stmt.executeQuery(q);
                 int upts = pts;
+                int new_pts;
+                new_pts=pts;
                 if(rs.next()){
-                    //upts = rs.getInt("points");
-                    System.out.println("Points"+upts);
+                    new_pts+=rs.getInt("points");
+                    System.out.println("points thing working?");
+                    //System.out.println("Points : "+(upts+" "+rs.getString("points")));
+                    upts+= (rs.getInt("points")%50);
+                    
+                    q2 = "Update details set points = " + new_pts + " where uname = '" + uname + "';";
+                    stmt3.executeUpdate(q2);
+                    System.out.println("upts is: "+upts);
                     if(upts>=50){
-                        upts = upts - 50;
-                        q = "Update details set points = " + upts + ", level = level + 1 where uname = '" + uname + "';";
+                        //upts = upts - 50;
+                        q = "Update details set level = level + 1 where uname = '" + uname + "';";
                         stmt1.executeUpdate(q);
                         int l = rs.getInt("level");
                         JOptionPane.showMessageDialog(null, "LEVEL UPGRADED TO "+(l+1));
@@ -335,10 +344,10 @@ Statement stmt1;
             lblRemaining.setText("Remaining Questions: " + rem);
             
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Deepali@123");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
           stmt=con.createStatement();
            timerF(0);
-          
+            System.out.println("timer sucks");
           String q1 = "Select level from details where uname = '" + uname + "';";
           
           ResultSet rs = stmt.executeQuery(q1);
@@ -349,7 +358,7 @@ Statement stmt1;
               lev = rs.getInt("level");
           }
           lblLevel.setText("LEVEL " + lev);
-          
+            System.out.println("level is "+lev);
           
           //to get number of easy, medium and hard questions in level
           String q2 = "Select * from noq where level = " + lev + ";";
@@ -359,6 +368,7 @@ Statement stmt1;
               e = rs.getInt("easy");
               m = rs.getInt("med");
               h = rs.getInt("hard");
+              System.out.println("e is: "+e+"m is: "+m +"h is : "+h);
           }
           
           //calculating maximum points
