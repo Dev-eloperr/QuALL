@@ -183,11 +183,11 @@ public class Game extends javax.swing.JFrame {
     private void rb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rb2ActionPerformed
-
+Statement stmt1;
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         try {
-            lblRemaining.setText("Remaining Question: " + rem);
+            lblRemaining.setText("Remaining Questions: " + rem);
             
             String ans;
             if (rb1.isSelected()) {
@@ -225,46 +225,73 @@ public class Game extends javax.swing.JFrame {
               diff = "easy";
             }else if(m>0){
                 diff = "medium";
-            }else{
+            }else if(h>0){
                 diff = "hard";
+            }else{
+                diff = "fin";
             }
             
-            String q3 = "Select ind from useQ order by Qused;";
-            rs = stmt.executeQuery(q3);
+            
+            if(!diff.equals("fin")){
+                String q3 = "Select ind from useQ order by Qused;";
+                rs = stmt.executeQuery(q3);
 
-            ArrayList<String> opt = new ArrayList<>();
-            String q4;
-            while(rs.next()){
-                ind = rs.getInt("ind");
-                q4 = "Select * from questions where ind = " + ind + " and diff = '" + diff + "';";
-                ResultSet rs1 = stmt.executeQuery(q4);
-                if(rs1.next()){
-                    if(diff.equals("easy")){
-                        e--;
-                    }else if(diff.equals("medium")){
-                        m--;
-                    }else if(diff.equals("hard")){
-                        h--;
-                    }
-                  
-                  lblQues.setText(rs1.getString("ques"));
-                  opt.add(rs1.getString("ansC"));
-                  opt.add(rs1.getString("ans2"));
-                  opt.add(rs1.getString("ans3"));
-                  opt.add(rs1.getString("ans4"));
-                  
-                  Collections.shuffle(opt);
-                  rb1.setText(opt.get(0));
-                  rb2.setText(opt.get(1));
-                  rb3.setText(opt.get(2));
-                  rb4.setText(opt.get(3));
-                  
-                  String q5 = "Update useQ set Qused = Qused + 1;";
-                  stmt.executeUpdate(q5);
-                  
-                  break;
+                 stmt1=con.createStatement();
+
+                ArrayList<String> opt = new ArrayList<>();
+                String q4;
+                while(rs.next()){
+                    ind = rs.getInt("ind");
+                    q4 = "Select * from questions where ind = " + ind + " and diff = '" + diff + "';";
+                    ResultSet rs1 = stmt1.executeQuery(q4);
+                    if(rs1.next()){
+                        if(diff.equals("easy")){
+                            e--;
+                        }else if(diff.equals("medium")){
+                            m--;
+                        }else if(diff.equals("hard")){
+                            h--;
+                        }
+                        rem--;
+
+                      lblQues.setText(rs1.getString("ques"));
+                      opt.add(rs1.getString("ansC"));
+                      opt.add(rs1.getString("ans2"));
+                      opt.add(rs1.getString("ans3"));
+                      opt.add(rs1.getString("ans4"));
+
+                      Collections.shuffle(opt);
+                      rb1.setText(opt.get(0));
+                      rb2.setText(opt.get(1));
+                      rb3.setText(opt.get(2));
+                      rb4.setText(opt.get(3));
+
+                      String q5 = "Update useQ set Qused = Qused + 1;";
+                      stmt.executeUpdate(q5);
+                      //String qpts = "Update details set points = " + pts + ";";
+                      //stmt.executeQuery(qpts);
+                      break;
+                  }
               }
-          }
+        }
+            else{
+                q = "Select * from details where uname = '" + uname + "';";
+                rs = stmt.executeQuery(q);
+                int upts = 0;
+                if(rs.next()){
+                    upts = rs.getInt("points");
+                    System.out.println("Points"+upts);
+                    if(upts>=50){
+                        upts = upts - 50;
+                        q = "Update details set points = " + upts + ", level = level + 1 where uname = '" + uname + "';";
+                        stmt1.executeUpdate(q);
+                        int l = rs.getInt("level");
+                        JOptionPane.showMessageDialog(null, "LEVEL UP!\n"+(l));
+                        System.out.println("Lev"+l);
+                    }
+                }
+                setVisible(false);
+            }
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -281,6 +308,8 @@ public class Game extends javax.swing.JFrame {
     int rem = 9;
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try{
+            lblRemaining.setText("Remaining Questions: " + rem);
+            
           Class.forName("com.mysql.cj.jdbc.Driver");
           con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Deepali@123");
           stmt=con.createStatement();
@@ -323,10 +352,11 @@ public class Game extends javax.swing.JFrame {
 
           ArrayList<String> opt = new ArrayList<>();
           String q4;
+          Statement stmt1=con.createStatement();
           while(rs.next()){
               ind = rs.getInt("ind");
               q4 = "Select * from questions where ind = " + ind + " and diff = '" + diff + "';";
-              ResultSet rs1 = stmt.executeQuery(q4);
+              ResultSet rs1 = stmt1.executeQuery(q4);
               if(rs1.next()){
                 if(diff.equals("easy")){
                     e--;
@@ -349,7 +379,7 @@ public class Game extends javax.swing.JFrame {
                 rb3.setText(opt.get(2));
                 rb4.setText(opt.get(3));
                 
-                String q5 = "Update useQ set Qused = Qused + 1;";
+                String q5 = "Update useQ set Qused = Qused + 1 where ind = "+ ind +";";
                 stmt.executeUpdate(q5);
                   
                 break;

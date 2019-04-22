@@ -258,7 +258,9 @@ public class Login extends javax.swing.JFrame {
                 boolean checked = BCrypt.checkpw(pd, pass);
                 if(checked){
                     System.out.println("opening mainFrame");
-                    new MainFrame(uname).setVisible(true);
+                    MainFrame mf = new MainFrame(uname);
+                    mf.setVisible(true);
+                    mf.setSize(890, 730);
                     setVisible(false);
                 }
                 else
@@ -270,7 +272,7 @@ public class Login extends javax.swing.JFrame {
         }
         catch(Exception e)
         {
-            System.out.println("Fucking exception");
+            System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(this, e.getMessage()); 
         }        // TODO add your handling code here:
     }//GEN-LAST:event_loginBtnActionPerformed
