@@ -99,12 +99,14 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        tfID.setFont(new java.awt.Font("Tahoma", 3, 16)); // NOI18N
         tfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIDActionPerformed(evt);
             }
         });
 
+        tfName.setFont(new java.awt.Font("Tahoma", 3, 16)); // NOI18N
         tfName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNameActionPerformed(evt);
@@ -115,6 +117,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Email      :");
 
+        tfEmail.setFont(new java.awt.Font("Tahoma", 3, 16)); // NOI18N
         tfEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfEmailActionPerformed(evt);
@@ -125,12 +128,14 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Password :");
 
+        tfp2.setFont(new java.awt.Font("Tahoma", 3, 16)); // NOI18N
         tfp2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfp2KeyPressed(evt);
             }
         });
 
+        tfp1.setFont(new java.awt.Font("Tahoma", 3, 16)); // NOI18N
         tfp1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfp1ActionPerformed(evt);
@@ -192,7 +197,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tfp2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(signupBtn)
                 .addGap(31, 31, 31))
         );

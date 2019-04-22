@@ -93,6 +93,8 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Password");
 
+        tfId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         jLabel3.setFont(new java.awt.Font("Segoe Script", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("UserID");

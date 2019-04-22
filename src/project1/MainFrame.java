@@ -28,7 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         
         userLabel.setText("@"+uname);
-        /*
+        
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
           con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
@@ -38,7 +38,8 @@ public class MainFrame extends javax.swing.JFrame {
           if(rs.next()){
             nameLabel.setText(rs.getString("name"));
             levelLabel.setText("You are on level: "+rs.getString("level"));
-            quesLabel.setText("Points required to level up: "+rs.getString("points"));
+            int p=50-rs.getInt("points")%50;
+            quesLabel.setText("Points required to level up: "+p);
             level=Integer.parseInt(rs.getString("level"));
           }
           
@@ -51,8 +52,8 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
-        jProgressBar1.setValue(5*level);
-        */
+        jProgressBar1.setValue(20*level);
+        
        ns=uname; 
     }
     
@@ -75,6 +76,7 @@ public class MainFrame extends javax.swing.JFrame {
         quesLabel = new javax.swing.JLabel();
         levelLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        ref_btn = new javax.swing.JButton();
         leaderboardPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -83,21 +85,6 @@ public class MainFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 800));
 
         mainTabbedPane.setBackground(new java.awt.Color(0, 0, 0));
-        mainTabbedPane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                mainTabbedPaneMouseMoved(evt);
-            }
-        });
-        mainTabbedPane.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                mainTabbedPaneFocusGained(evt);
-            }
-        });
-        mainTabbedPane.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                mainTabbedPaneMouseEntered(evt);
-            }
-        });
 
         profLabel.setBackground(new java.awt.Color(0, 204, 204));
         profLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -138,6 +125,16 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        ref_btn.setBackground(new java.awt.Color(0, 204, 204));
+        ref_btn.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
+        ref_btn.setForeground(new java.awt.Color(0, 51, 102));
+        ref_btn.setText("Refresh");
+        ref_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ref_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout profLabelLayout = new javax.swing.GroupLayout(profLabel);
         profLabel.setLayout(profLabelLayout);
         profLabelLayout.setHorizontalGroup(
@@ -160,11 +157,15 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(12, 12, 12))
                             .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profLabelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(ref_btn))
         );
         profLabelLayout.setVerticalGroup(
             profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profLabelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addComponent(ref_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +179,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         mainTabbedPane.addTab("Profile", profLabel);
@@ -229,17 +230,7 @@ public class MainFrame extends javax.swing.JFrame {
         g.setSize(1120, 664);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void mainTabbedPaneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainTabbedPaneFocusGained
-        // TODO add your handling code here:
-        
-    
-    }//GEN-LAST:event_mainTabbedPaneFocusGained
-
-    private void mainTabbedPaneMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTabbedPaneMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mainTabbedPaneMouseMoved
-
-    private void mainTabbedPaneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainTabbedPaneMouseEntered
+    private void ref_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ref_btnActionPerformed
         // TODO add your handling code here:
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
@@ -265,7 +256,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
         
         jProgressBar1.setValue(20*level);
-    }//GEN-LAST:event_mainTabbedPaneMouseEntered
+    }//GEN-LAST:event_ref_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,6 +307,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel pictureLabel;
     private javax.swing.JPanel profLabel;
     private javax.swing.JLabel quesLabel;
+    private javax.swing.JButton ref_btn;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }

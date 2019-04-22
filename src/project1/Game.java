@@ -24,6 +24,7 @@ public class Game extends javax.swing.JFrame {
     String uname;
     /**
      * Creates new form Game
+     * @param uname
      */
     public Game(String uname) {
         this.uname = uname;
@@ -93,6 +94,11 @@ public class Game extends javax.swing.JFrame {
                 rb4ActionPerformed(evt);
             }
         });
+        rb4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rb4KeyPressed(evt);
+            }
+        });
         getContentPane().add(rb4);
         rb4.setBounds(690, 430, 200, 60);
 
@@ -104,6 +110,11 @@ public class Game extends javax.swing.JFrame {
         rb2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rb2ActionPerformed(evt);
+            }
+        });
+        rb2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rb2KeyPressed(evt);
             }
         });
         getContentPane().add(rb2);
@@ -120,6 +131,11 @@ public class Game extends javax.swing.JFrame {
                 rb1ActionPerformed(evt);
             }
         });
+        rb1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rb1KeyPressed(evt);
+            }
+        });
         getContentPane().add(rb1);
         rb1.setBounds(310, 340, 200, 60);
 
@@ -128,6 +144,11 @@ public class Game extends javax.swing.JFrame {
         rb3.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
         rb3.setForeground(new java.awt.Color(102, 204, 255));
         rb3.setText("<Option3>");
+        rb3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rb3KeyPressed(evt);
+            }
+        });
         getContentPane().add(rb3);
         rb3.setBounds(310, 430, 200, 60);
 
@@ -188,6 +209,11 @@ public class Game extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/me/myimageapp/newpackage/backdrop#2.jpg"))); // NOI18N
         jLabel1.setOpaque(true);
+        jLabel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel1KeyPressed(evt);
+            }
+        });
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1130, 660);
 
@@ -214,35 +240,58 @@ Statement stmt1,stmt3;
             lblRemaining.setText("Remaining Questions: " + rem);
             
             //timerF(0);
-            String ans;
+            StringBuffer ans;
             if (rb1.isSelected()) {
-                ans = rb1.getText();
+                ans = new StringBuffer(rb1.getText());
+                //rb1.setSelected(false);
             } else if (rb2.isSelected()) {
-                ans = rb2.getText();
+                ans = new StringBuffer(rb2.getText());
+                //rb2.setSelected(false);
             } else if (rb3.isSelected()) {
-                ans = rb3.getText();
+                ans = new StringBuffer(rb3.getText());
+                //rb3.setSelected(false);
             } else {
-                ans = rb4.getText();
+                ans = new StringBuffer(rb4.getText());
+                //rb4.setSelected(false);
             }
+            //rb1.setSelected(false);
+            //rb2.setSelected(false);
+            //rb3.setSelected(false);
+            //rb4.setSelected(false);
             String q = "Select * from questions where ind = " + ind + ";";
             ResultSet rs = stmt.executeQuery(q);
             String key = "";
             String diff = "";
-            String q2=new String();
+            String q2;
             if(rs.next()){
                 key = rs.getString("ansC");
                 diff = rs.getString("diff");
             }
-            
-            if(key.equals(ans)){
-                if(diff.equals("easy")){
-                    pts += 5;
-                }else if(diff.equals("medium")){
-                    pts += 10;
-                }else if(diff.equals("hard")){
-                    pts += 15;
-                }
+            int i = ans.indexOf("-<br>-");
+            if(i!=-1){
+                ans.delete(i, i+"-<br>-".length());
             }
+            ans.delete(0, 6);
+            ans.delete(ans.length()-7, ans.length());
+            System.out.println(ans);
+            System.out.println(ans);
+            if(key.equals(ans.toString())){
+                switch (diff) {
+                    case "easy":
+                        pts += 5;
+                        break;
+                    case "medium":
+                        pts += 10;
+                        break;
+                    case "hard":
+                        pts += 15;
+                        break;
+                    default:
+                        break;
+                }
+                JOptionPane.showMessageDialog(null,"Correct Answer!!!");
+            }else
+                JOptionPane.showMessageDialog(null,"Wrong Answer!!!");
             
             lblPts.setText("Points: " + pts);
             
@@ -270,12 +319,18 @@ Statement stmt1,stmt3;
                     q4 = "Select * from questions where ind = " + ind + " and diff = '" + diff + "';";
                     ResultSet rs1 = stmt1.executeQuery(q4);
                     if(rs1.next()){
-                        if(diff.equals("easy")){
-                            e--;
-                        }else if(diff.equals("medium")){
-                            m--;
-                        }else if(diff.equals("hard")){
-                            h--;
+                        switch (diff) {
+                            case "easy":
+                                e--;
+                                break;
+                            case "medium":
+                                m--;
+                                break;
+                            case "hard":
+                                h--;
+                                break;
+                            default:
+                                break;
                         }
                         rem--;
 
@@ -293,16 +348,16 @@ Statement stmt1,stmt3;
                 }
                 //ans_c.append(rs1.getString("ansC"));
                 if(ans_c.length()>15)
-                    ans_c.insert(15, "-<br>");
+                    ans_c.insert(15, "-<br>-");
                 //ans2.append(rs1.getString("ans2"));
                 if(ans2.length()>15)
-                    ans2.insert(15, "<br>");
+                    ans2.insert(15, "-<br>-");
                 //ans3.append(rs1.getString("ans3"));
                 if(ans3.length()>15)
-                    ans3.insert(15, "<br>");
+                    ans3.insert(15, "-<br>-");
                 //ans4.append(rs1.getString("ans4"));
                 if(ans4.length()>15)
-                    ans4.insert(15, "<br>");
+                    ans4.insert(15, "-<br>-");
                   System.out.println("length buster");
                 System.out.println("QUESTION: "+question_s+"\n"+ans_c+"\n"+ans2+"\n"+ans3+"\n"+ans4+"\n");
                 lblQues.setText("<html>"+question_s+"</html>");
@@ -382,6 +437,10 @@ Statement stmt1,stmt3;
           }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try{
+            //rb1.setSelected(false);
+            //rb2.setSelected(false);
+            //rb3.setSelected(false);
+            //rb4.setSelected(false);
             lblRemaining.setText("Remaining Questions: " + rem);
             
           Class.forName("com.mysql.cj.jdbc.Driver");
@@ -436,13 +495,19 @@ Statement stmt1,stmt3;
               q4 = "Select * from questions where ind = " + ind + " and diff = '" + diff + "';";
               ResultSet rs1 = stmt1.executeQuery(q4);
               if(rs1.next()){
-                if(diff.equals("easy")){
-                    e--;
-                }else if(diff.equals("medium")){
-                    m--;
-                }else if(diff.equals("hard")){
-                    h--;
-                }
+                  switch (diff) {
+                      case "easy":
+                          e--;
+                          break;
+                      case "medium":
+                          m--;
+                          break;
+                      case "hard":
+                          h--;
+                          break;
+                      default:
+                          break;
+                  }
                 rem--;  
                 System.out.println("aagya");
                 question_s = new StringBuffer(rs1.getString("ques"));
@@ -459,10 +524,10 @@ Statement stmt1,stmt3;
                 }
                 //ans_c.append(rs1.getString("ansC"));
                 if(ans_c.length()>15)
-                    ans_c.insert(15, "-<br>");
+                    ans_c.insert(15, "-<br>-");
                 //ans2.append(rs1.getString("ans2"));
                 if(ans2.length()>15)
-                    ans2.insert(15, "<br>");
+                    ans2.insert(15, "-<br>-");
                 //ans3.append(rs1.getString("ans3"));
                 if(ans3.length()>15)
                     ans3.insert(15, "<br>");
@@ -506,6 +571,36 @@ Statement stmt1,stmt3;
         // TODO add your handling code here:
     }//GEN-LAST:event_rb1ActionPerformed
 
+    private void jLabel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER)        
+            btnSubmit.doClick();
+    }//GEN-LAST:event_jLabel1KeyPressed
+
+    private void rb1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rb1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER)        
+            btnSubmit.doClick();
+    }//GEN-LAST:event_rb1KeyPressed
+
+    private void rb2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rb2KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER)        
+            btnSubmit.doClick();
+    }//GEN-LAST:event_rb2KeyPressed
+
+    private void rb3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rb3KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER)        
+            btnSubmit.doClick();
+    }//GEN-LAST:event_rb3KeyPressed
+
+    private void rb4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rb4KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER)        
+            btnSubmit.doClick();
+    }//GEN-LAST:event_rb4KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -535,6 +630,7 @@ Statement stmt1,stmt3;
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 //new Game("").setVisible(true);
             }
