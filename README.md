@@ -10,3 +10,5 @@ It lets you keep track of your competitors (keep your friends close, and your en
 So come join the league, and try to pave your way through the various levels as the questions get more and more difficult!
 
 @author: @VedikaBansal @MeghnaChaudhary @DevKathuria
+
+Link: https://github.com/Dev-eloperr/QuALL
