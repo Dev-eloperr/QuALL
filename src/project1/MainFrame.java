@@ -31,7 +31,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
           stmt=con.createStatement();
           String q="Select * from details where uname='"+ uname+"';";
           ResultSet rs=stmt.executeQuery(q);
@@ -195,16 +195,16 @@ public class MainFrame extends javax.swing.JFrame {
         leaderboardPanelLayout.setHorizontalGroup(
             leaderboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leaderboardPanelLayout.createSequentialGroup()
-                .addGap(421, 421, 421)
+                .addGap(368, 368, 368)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
         leaderboardPanelLayout.setVerticalGroup(
             leaderboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leaderboardPanelLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(532, Short.MAX_VALUE))
+                .addContainerGap(529, Short.MAX_VALUE))
         );
 
         mainTabbedPane.addTab("Leaderboard", leaderboardPanel);
@@ -234,7 +234,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
           stmt=con.createStatement();
           String q="Select * from details where uname='"+ ns+"';";
           ResultSet rs=stmt.executeQuery(q);
