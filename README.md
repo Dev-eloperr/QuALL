@@ -9,14 +9,15 @@ It lets you keep track of your competitors (keep your friends close, and your en
 So come join the league, and try to pave your way through the various levels as the questions get more and more difficult!
 
 ## Steps to Run
+```
   Goto Src/Project1
   Use queries given in sqltemplate.java to create a demo database
   Load all the .java files in any suitable IDE, & Run Project1.java
-
+```
 ## Authors
 - [Dev Kathuria](https://github.com/Dev-eloperr)
 - [Vedika Bansal](https://github.com/vedika72)
 - [Meghna Chaudhary](https://github.com/Meghna8124)
--
+
 ### Repository
 [Repo](https://github.com/Dev-eloperr/QuALL)
