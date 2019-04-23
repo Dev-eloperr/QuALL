@@ -444,7 +444,7 @@ Statement stmt1,stmt3;
             lblRemaining.setText("Remaining Questions: " + rem);
             
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Deepali@123");
           stmt=con.createStatement();
            timerF(0);
             System.out.println("timer sucks");
