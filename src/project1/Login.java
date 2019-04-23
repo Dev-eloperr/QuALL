@@ -26,6 +26,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        //setLocationRelativeTo(null);
     }
 
     /**
@@ -268,7 +269,7 @@ public class Login extends javax.swing.JFrame {
                     System.out.println("opening mainFrame");
                     MainFrame mf = new MainFrame(uname);
                     mf.setVisible(true);
-                    mf.setSize(890, 730);
+                    mf.setSize(930, 780);
                     setVisible(false);
                 }
                 else
@@ -290,7 +291,7 @@ public class Login extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
           stmt=con.createStatement();
 
 

@@ -22,6 +22,7 @@ public class SignUp extends javax.swing.JFrame {
     public SignUp() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        //setLocationRelativeTo(null);
     }
 
     /**
@@ -239,7 +240,7 @@ String uname;
                 if(p1.equals(p2)){
                     try{
                         Class.forName("com.mysql.cj.jdbc.Driver");
-                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
+                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
                         Statement stmt=con.createStatement();
                         
                         BCrypt hasher = new BCrypt();

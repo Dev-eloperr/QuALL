@@ -30,12 +30,12 @@ public class MainFrame extends javax.swing.JFrame {
     static String ns = new String();
     public MainFrame(String uname) {
         initComponents();
-        
+        //setLocationRelativeTo(null);
         userLabel.setText("@"+uname);
         
         try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
+          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "toor");
           stmt=con.createStatement();
           String q="Select * from details where uname='"+ uname+"';";
           ResultSet rs=stmt.executeQuery(q);
@@ -80,7 +80,8 @@ public class MainFrame extends javax.swing.JFrame {
         quesLabel = new javax.swing.JLabel();
         levelLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        ref_btn = new javax.swing.JButton();
+        Signout_btn = new javax.swing.JButton();
+        ref_btn1 = new javax.swing.JButton();
         leaderboardPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -95,7 +96,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        mainTabbedPane.setBackground(new java.awt.Color(0, 0, 0));
+        mainTabbedPane.setBackground(new java.awt.Color(0, 204, 204));
+        mainTabbedPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        mainTabbedPane.setFont(new java.awt.Font("Yu Gothic UI", 3, 14)); // NOI18N
 
         profLabel.setBackground(new java.awt.Color(0, 204, 204));
         profLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -136,13 +139,23 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        ref_btn.setBackground(new java.awt.Color(0, 204, 204));
-        ref_btn.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
-        ref_btn.setForeground(new java.awt.Color(0, 51, 102));
-        ref_btn.setText("Refresh");
-        ref_btn.addActionListener(new java.awt.event.ActionListener() {
+        Signout_btn.setBackground(new java.awt.Color(0, 204, 204));
+        Signout_btn.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
+        Signout_btn.setForeground(new java.awt.Color(0, 51, 102));
+        Signout_btn.setText("SignOut");
+        Signout_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ref_btnActionPerformed(evt);
+                Signout_btnActionPerformed(evt);
+            }
+        });
+
+        ref_btn1.setBackground(new java.awt.Color(0, 204, 204));
+        ref_btn1.setFont(new java.awt.Font("Yu Gothic", 2, 12)); // NOI18N
+        ref_btn1.setForeground(new java.awt.Color(0, 51, 102));
+        ref_btn1.setText("Refresh");
+        ref_btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ref_btn1ActionPerformed(evt);
             }
         });
 
@@ -167,16 +180,21 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12))
                             .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profLabelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ref_btn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Signout_btn)
+                .addContainerGap())
+            .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profLabelLayout.createSequentialGroup()
+                    .addContainerGap(801, Short.MAX_VALUE)
+                    .addComponent(ref_btn1)
+                    .addGap(10, 10, 10)))
         );
         profLabelLayout.setVerticalGroup(
             profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profLabelLayout.createSequentialGroup()
-                .addComponent(ref_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
                 .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +208,14 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(quesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addComponent(Signout_btn)
+                .addContainerGap())
+            .addGroup(profLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(profLabelLayout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addComponent(ref_btn1)
+                    .addContainerGap(648, Short.MAX_VALUE)))
         );
 
         mainTabbedPane.addTab("Profile", profLabel);
@@ -235,7 +260,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(leaderboardPanelLayout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leaderboardPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,8 +272,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(284, Short.MAX_VALUE))
         );
 
         mainTabbedPane.addTab("Leaderboard", leaderboardPanel);
@@ -257,7 +282,9 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +293,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Game g = new Game(ns);
@@ -274,38 +301,10 @@ public class MainFrame extends javax.swing.JFrame {
         g.setSize(1120, 664);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void ref_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ref_btnActionPerformed
-        // TODO add your handling code here:
-        try{
-          Class.forName("com.mysql.cj.jdbc.Driver");
-          con= DriverManager.getConnection("jdbc:mysql://localhost/project?autoReconnect=true&useSSL=false", "root", "Mc123456@");
-          stmt=con.createStatement();
-          String q="Select * from details where uname='"+ ns+"';";
-          ResultSet rs=stmt.executeQuery(q);
-          if(rs.next()){
-            nameLabel.setText(rs.getString("name"));
-            levelLabel.setText("You are on level: "+rs.getString("level"));
-            int p=50-rs.getInt("points")%50;
-            quesLabel.setText("Points required to level up: "+p);
-            level=Integer.parseInt(rs.getString("level"));
-          }
-          
-
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-        
-        jProgressBar1.setValue(20*level);
-    }//GEN-LAST:event_ref_btnActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
             stmt=con.createStatement();
-            String q = "Select uname,level,points from details order by level, points desc;";
+            String q = "Select uname,level,points from details order by level desc;";
             ResultSet rs = stmt.executeQuery(q);
             
             int rank = 1, lev, pts;
@@ -330,6 +329,18 @@ public class MainFrame extends javax.swing.JFrame {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void ref_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ref_btn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ref_btn1ActionPerformed
+
+    private void Signout_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Signout_btnActionPerformed
+        // TODO add your handling code here:
+        
+        setVisible(false);
+        Login logi = new Login();
+        logi.setVisible(true);
+    }//GEN-LAST:event_Signout_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,6 +381,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Signout_btn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JProgressBar jProgressBar1;
@@ -382,7 +394,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel pictureLabel;
     private javax.swing.JPanel profLabel;
     private javax.swing.JLabel quesLabel;
-    private javax.swing.JButton ref_btn;
+    private javax.swing.JButton ref_btn1;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }
