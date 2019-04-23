@@ -8,8 +8,12 @@ package project1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -79,10 +83,17 @@ public class MainFrame extends javax.swing.JFrame {
         ref_btn = new javax.swing.JButton();
         leaderboardPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        leaderTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 800));
         setPreferredSize(new java.awt.Dimension(800, 800));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         mainTabbedPane.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -190,21 +201,54 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/me/myimageapp/newpackage/leaderr.png"))); // NOI18N
 
+        leaderTable.setBackground(new java.awt.Color(0, 0, 0));
+        leaderTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        leaderTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        leaderTable.setForeground(new java.awt.Color(0, 204, 204));
+        leaderTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Rank ", "Username", "Level", "Points"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        leaderTable.setRowHeight(30);
+        jScrollPane1.setViewportView(leaderTable);
+
         javax.swing.GroupLayout leaderboardPanelLayout = new javax.swing.GroupLayout(leaderboardPanel);
         leaderboardPanel.setLayout(leaderboardPanelLayout);
         leaderboardPanelLayout.setHorizontalGroup(
             leaderboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leaderboardPanelLayout.createSequentialGroup()
-                .addGap(368, 368, 368)
+                .addGap(212, 212, 212)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(214, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leaderboardPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addGap(363, 363, 363))
         );
         leaderboardPanelLayout.setVerticalGroup(
             leaderboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leaderboardPanelLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(529, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(288, Short.MAX_VALUE))
         );
 
         mainTabbedPane.addTab("Leaderboard", leaderboardPanel);
@@ -258,6 +302,35 @@ public class MainFrame extends javax.swing.JFrame {
         jProgressBar1.setValue(20*level);
     }//GEN-LAST:event_ref_btnActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            stmt=con.createStatement();
+            String q = "Select uname,level,points from details order by level, points desc;";
+            ResultSet rs = stmt.executeQuery(q);
+            
+            int rank = 1, lev, pts;
+            String un;
+            //Object[] row;
+            //DefaultTableModel dtm = (DefaultTableModel) leaderTable.getModel();
+            //leaderTable.setModel(dtm);
+            
+            while(rs.next()&& rank<=5){
+                System.out.println("hghggjgjhg");
+                lev  = rs.getInt("level");
+                pts = rs.getInt("points");
+                un = rs.getString("uname");
+                leaderTable.getModel().setValueAt(rank, rank-1, 0);
+                leaderTable.getModel().setValueAt(un, rank-1, 1);
+                leaderTable.getModel().setValueAt(lev, rank-1, 2);
+                leaderTable.getModel().setValueAt(pts, rank-1, 3);
+                
+                rank++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -300,6 +373,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable leaderTable;
     private javax.swing.JPanel leaderboardPanel;
     private javax.swing.JLabel levelLabel;
     private javax.swing.JTabbedPane mainTabbedPane;
